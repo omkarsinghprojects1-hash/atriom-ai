@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- ═══════════════════════════════════════════
-         PRIMARY SEO META TAGSA
+         PRIMARY SEO META TAGS
     ═══════════════════════════════════════════ -->
     <title>Atriom-AI — Enterprise AI Solutions for Education, Healthcare, Logistics & More</title>
     <meta name="description"
@@ -1051,6 +1051,12 @@
             transform: translateY(0);
         }
 
+        /* ── CROPPULSE PULSE ANIMATION ── */
+        @keyframes cpPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
             #hero {
@@ -1115,6 +1121,15 @@
                 padding: 1.5rem;
                 flex-direction: column;
                 align-items: flex-start;
+            }
+
+            /* CropPulse responsive */
+            .cp-step {
+                grid-template-columns: 1fr !important;
+            }
+            .cp-step > div:first-child {
+                border-right: none !important;
+                border-bottom: 1px solid var(--border);
             }
         }
 
@@ -1271,6 +1286,7 @@
     <nav aria-label="Main navigation">
         <div class="wordmark" aria-label="Atriom-AI Home">Atriom<em>-AI</em></div>
         <ul class="nav-links">
+            <li><a href="#croppulse">CropPulse</a></li>
             <li><a href="#sectors">Sectors</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#analytics">Analytics</a></li>
@@ -1293,7 +1309,7 @@
                 world — from hospitals and schools to supply chains and factory floors.</p>
             <div class="hero-actions">
                 <a href="javascript:void(0)" onclick="toggleChat()" class="btn-primary" aria-label="Talk to our AI agent">Talk to our Agent</a>
-                <a href="#sectors" class="btn-ghost">Explore Sectors →</a>
+                <a href="#croppulse" class="btn-ghost">See CropPulse →</a>
             </div>
         </div>
 
@@ -1360,6 +1376,149 @@
             <span>Predictive AI</span><span class="dot">◆</span>
         </div>
     </div>
+
+    <!-- ═══════════════════════════════════════════
+         CROPPULSE — AGRICULTURAL AI PRODUCT
+         (moved to top so visitors see it first)
+    ═══════════════════════════════════════════ -->
+    <section id="croppulse" aria-labelledby="croppulse-heading" style="background: var(--surface); position: relative; overflow: hidden;">
+        <!-- subtle organic background gradients -->
+        <div aria-hidden="true" style="position:absolute;top:-120px;right:-80px;width:480px;height:480px;background:radial-gradient(ellipse,rgba(45,90,61,0.06) 0%,transparent 70%);pointer-events:none;"></div>
+        <div aria-hidden="true" style="position:absolute;bottom:-60px;left:-60px;width:320px;height:320px;background:radial-gradient(ellipse,rgba(45,90,61,0.04) 0%,transparent 70%);pointer-events:none;"></div>
+
+        <div class="fade-up">
+            <span class="section-tag">Featured Product</span>
+            <div style="display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:0.8rem;flex-wrap:wrap;">
+                <h2 id="croppulse-heading" style="margin-bottom:0;">Introducing <em>CropPulse</em> —<br>the plant listens, so you don't have to.</h2>
+            </div>
+            <p class="section-intro" style="max-width:620px;">CropPulse is an agricultural AI system that detects plant stress at the physiological level — using ultrasonic acoustics and on-device AI to deliver precise, field-level interventions before visible symptoms appear.</p>
+        </div>
+
+        <!-- Key stats row -->
+        <div class="fade-up" style="margin-top:3rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);">
+            <div style="background:var(--bg);padding:2rem 1.8rem;">
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Sensor Range</div>
+                <div style="font-family:'Fraunces',serif;font-weight:300;font-size:2.2rem;letter-spacing:-0.04em;color:var(--ink);">20–150<span style="color:var(--accent);">kHz</span></div>
+                <div style="font-size:0.8rem;color:var(--muted);margin-top:0.3rem;">Ultrasonic band — far beyond human hearing</div>
+            </div>
+            <div style="background:var(--bg);padding:2rem 1.8rem;">
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Detection Types</div>
+                <div style="font-family:'Fraunces',serif;font-weight:300;font-size:2.2rem;letter-spacing:-0.04em;color:var(--ink);">3<span style="color:var(--accent);">+</span></div>
+                <div style="font-size:0.8rem;color:var(--muted);margin-top:0.3rem;">Drought · Pest Activity · Mechanical Trauma</div>
+            </div>
+            <div style="background:var(--bg);padding:2rem 1.8rem;">
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Connectivity</div>
+                <div style="font-family:'Fraunces',serif;font-weight:300;font-size:2.2rem;letter-spacing:-0.04em;color:var(--ink);">Zero<span style="color:var(--accent);">.</span></div>
+                <div style="font-size:0.8rem;color:var(--muted);margin-top:0.3rem;">On-device CNN — no internet required</div>
+            </div>
+        </div>
+
+        <!-- Live waveform visualiser -->
+        <div class="fade-up" style="margin-top:2rem;background:var(--bg);border:1px solid var(--border);padding:1.8rem 2rem;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem;">
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;animation:cpPulse 1.4s ease-in-out infinite;"></span>
+                Live Ultrasonic Signal — Cavitation Events Detected
+            </div>
+            <canvas id="cropWave" height="80" style="width:100%;display:block;" aria-label="Live ultrasonic waveform" role="img"></canvas>
+            <div style="display:flex;gap:2rem;margin-top:0.8rem;flex-wrap:wrap;">
+                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">
+                    <span style="width:12px;height:2px;background:var(--accent);display:inline-block;"></span>Cavitation click
+                </div>
+                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">
+                    <span style="width:12px;height:2px;background:rgba(200,80,80,0.7);display:inline-block;"></span>Stress threshold crossed
+                </div>
+                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">
+                    <span style="width:12px;height:2px;background:var(--border2);display:inline-block;"></span>Ambient noise (filtered)
+                </div>
+            </div>
+        </div>
+
+        <!-- 5-step pipeline -->
+        <div class="fade-up" style="margin-top:3rem;">
+            <span class="section-tag">How It Works</span>
+            <h3 style="font-family:'Fraunces',serif;font-weight:300;font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.5rem;">From stem to <em>decision</em> in five stages.</h3>
+
+            <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--border);">
+
+                <!-- Step 1 -->
+                <div class="cp-step" style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--border);background:var(--surface);transition:background 0.2s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--surface)'">
+                    <div style="padding:2rem 1.8rem;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;">
+                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Step 01</div>
+                        <div style="font-size:1.6rem;margin-bottom:0.4rem;">🌿</div>
+                        <div style="font-weight:500;font-size:0.93rem;color:var(--ink);">Sensors</div>
+                    </div>
+                    <div style="padding:2rem 2.2rem;">
+                        <h4 style="font-family:'Fraunces',serif;font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem;">Piezoelectric Ultrasonic Nodes</h4>
+                        <p style="font-size:0.87rem;color:var(--muted);line-height:1.8;font-weight:300;">Sensor nodes are mounted near crop stems and continuously listen across 20–150 kHz — capturing the microscopic clicks plants produce when internal water-conducting vessels break down under stress, a process called <strong style="color:var(--ink2);font-weight:500;">cavitation</strong>. Unlike cameras or soil probes, these sensors listen directly to the plant's internal physiology, making them the earliest possible indicator of stress.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="cp-step" style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--border);background:var(--surface);transition:background 0.2s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--surface)'">
+                    <div style="padding:2rem 1.8rem;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;">
+                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Step 02</div>
+                        <div style="font-size:1.6rem;margin-bottom:0.4rem;">🎚️</div>
+                        <div style="font-weight:500;font-size:0.93rem;color:var(--ink);">Signal Filter</div>
+                    </div>
+                    <div style="padding:2rem 2.2rem;">
+                        <h4 style="font-family:'Fraunces',serif;font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem;">High-Pass Spectral &amp; Coincidence Filtering</h4>
+                        <p style="font-size:0.87rem;color:var(--muted);line-height:1.8;font-weight:300;">Raw farm audio contains significant noise — wind, irrigation systems, machinery, and insects. A high-pass spectral filter strips out everything below 20 kHz. A <strong style="color:var(--ink2);font-weight:500;">two-microphone coincidence filter</strong> then cross-checks both sensors simultaneously — if only one picks up a signal, it is rejected as environmental noise. Only genuine plant-origin clicks pass through.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="cp-step" style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--border);background:var(--surface);transition:background 0.2s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--surface)'">
+                    <div style="padding:2rem 1.8rem;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;">
+                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Step 03</div>
+                        <div style="font-size:1.6rem;margin-bottom:0.4rem;">🧠</div>
+                        <div style="font-weight:500;font-size:0.93rem;color:var(--ink);">Edge AI</div>
+                    </div>
+                    <div style="padding:2rem 2.2rem;">
+                        <h4 style="font-family:'Fraunces',serif;font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem;">On-Device CNN Classifier (PyTorch)</h4>
+                        <p style="font-size:0.87rem;color:var(--muted);line-height:1.8;font-weight:300;">The filtered signal is passed to a <strong style="color:var(--ink2);font-weight:500;">PyTorch Convolutional Neural Network running entirely on the sensor node</strong> — no internet required. The CNN analyses each click's frequency profile, intensity, and timing pattern against learned stress signatures, classifying the type: drought, pest activity, or mechanical trauma. Each produces a distinctly different acoustic fingerprint. Classification happens in the field, in real time.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="cp-step" style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--border);background:var(--surface);transition:background 0.2s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--surface)'">
+                    <div style="padding:2rem 1.8rem;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;">
+                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Step 04</div>
+                        <div style="font-size:1.6rem;margin-bottom:0.4rem;">💬</div>
+                        <div style="font-weight:500;font-size:0.93rem;color:var(--ink);">LLM Reasoning</div>
+                    </div>
+                    <div style="padding:2rem 2.2rem;">
+                        <h4 style="font-family:'Fraunces',serif;font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem;">Agronomic Inference &amp; Recommendation</h4>
+                        <p style="font-size:0.87rem;color:var(--muted);line-height:1.8;font-weight:300;">The LLM layer takes the CNN's classification — e.g., <em style="color:var(--accent);">"drought stress detected, severity rising, Day 3"</em> — and reasons over it alongside crop species, growth stage, weather patterns, soil moisture history, and past stress events. It generates a <strong style="color:var(--ink2);font-weight:500;">specific, human-readable agronomic action</strong>: which rows to irrigate, how much water to apply, or whether to deploy a drone to a GPS coordinate. Not just an alert — a decision.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="cp-step" style="display:grid;grid-template-columns:200px 1fr;background:var(--accent-lt);transition:background 0.2s;" onmouseover="this.style.background='rgba(45,90,61,0.1)'" onmouseout="this.style.background='var(--accent-lt)'">
+                    <div style="padding:2rem 1.8rem;border-right:1px solid rgba(45,90,61,0.18);display:flex;flex-direction:column;justify-content:center;">
+                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Step 05</div>
+                        <div style="font-size:1.6rem;margin-bottom:0.4rem;">🚁</div>
+                        <div style="font-weight:500;font-size:0.93rem;color:var(--ink);">Alert &amp; Action</div>
+                    </div>
+                    <div style="padding:2rem 2.2rem;">
+                        <h4 style="font-family:'Fraunces',serif;font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem;">Autonomous Intervention &amp; Continuous Learning</h4>
+                        <p style="font-size:0.87rem;color:var(--muted);line-height:1.8;font-weight:300;">Prioritised alerts arrive in the farmer's dashboard with full reasoning visible. For farms with integrated infrastructure, CropPulse communicates directly with <strong style="color:var(--ink2);font-weight:500;">irrigation controllers and drone-spraying systems</strong> — enabling fully autonomous intervention before the farmer sees the notification. Every action is logged, building a farm-specific dataset that continuously improves model accuracy over time.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CropPulse CTA strip -->
+        <div class="fade-up" style="margin-top:2.5rem;background:var(--ink);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+            <div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:0.5rem;">CropPulse · Agricultural AI</div>
+                <div style="font-family:'Fraunces',serif;font-weight:300;font-size:1.4rem;color:#fff;letter-spacing:-0.02em;">Ready to hear what your crops are telling you?</div>
+            </div>
+            <a href="mailto:info@atriom-ai.com?subject=CropPulse%20Enquiry&body=I'm%20interested%20in%20learning%20more%20about%20CropPulse." style="display:inline-flex;align-items:center;gap:0.7rem;padding:0.9rem 2rem;background:var(--accent);color:#fff;text-decoration:none;font-weight:500;font-size:0.9rem;flex-shrink:0;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                Enquire about CropPulse →
+            </a>
+        </div>
+    </section>
 
     <!-- SECTORS -->
     <section id="sectors" aria-labelledby="sectors-heading">
@@ -1630,6 +1789,7 @@
     <footer aria-label="Site footer">
         <div class="footer-brand">Atriom<em>-AI</em></div>
         <nav class="footer-links" aria-label="Footer navigation">
+            <a href="#croppulse">CropPulse</a>
             <a href="#sectors">Sectors</a>
             <a href="#services">Services</a>
             <a href="#analytics">Analytics</a>
@@ -1671,7 +1831,7 @@
         const chatFooter = document.getElementById('chatFooter');
         let chatState = 0;
         let leadData = { sector: '', query: '', name: '', phone: '' };
-        const sectors = ['Education', 'Healthcare', 'Real Estate', 'Logistics', 'Industry', 'Other'];
+        const sectors = ['Education', 'Healthcare', 'Real Estate', 'Logistics', 'Industry', 'Agriculture', 'Other'];
 
         function toggleChat() {
             const win = document.getElementById('chatWindow');
@@ -1901,6 +2061,102 @@
                         cells[idx].style.background = color;
                     }, 400);
                 }
+            }
+
+            // ── CropPulse Waveform Visualiser ──
+            const cropCanvas = document.getElementById('cropWave');
+            if (cropCanvas) {
+                const wCtx = cropCanvas.getContext('2d');
+                cropCanvas.width = cropCanvas.offsetWidth * window.devicePixelRatio;
+                cropCanvas.height = 80 * window.devicePixelRatio;
+                wCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+                const W = cropCanvas.offsetWidth;
+                const H = 80;
+                const points = 200;
+                let waveData = Array.from({length: points}, () => (Math.random() - 0.5) * 4);
+                let cavitationEvents = [];
+                let stressLevel = 0;
+
+                function addCavitationEvent(x) {
+                    cavitationEvents.push({ x, life: 1.0, type: Math.random() > 0.7 ? 'stress' : 'normal' });
+                }
+
+                function drawWave() {
+                    wCtx.clearRect(0, 0, W, H);
+
+                    // shift waveform left
+                    waveData.shift();
+                    const newVal = (Math.random() - 0.5) * 6;
+                    waveData.push(newVal);
+
+                    // randomly inject cavitation spikes
+                    if (Math.random() < 0.04) {
+                        const spikeAmp = 15 + Math.random() * 20;
+                        waveData[waveData.length - 1] = (Math.random() > 0.5 ? 1 : -1) * spikeAmp;
+                        addCavitationEvent(W - 2);
+                        if (Math.random() > 0.5) stressLevel = Math.min(1, stressLevel + 0.15);
+                    }
+                    stressLevel = Math.max(0, stressLevel - 0.003);
+
+                    // threshold line
+                    const threshold = H / 2 - 18;
+                    wCtx.setLineDash([4, 4]);
+                    wCtx.strokeStyle = 'rgba(200,80,80,0.3)';
+                    wCtx.lineWidth = 1;
+                    wCtx.beginPath();
+                    wCtx.moveTo(0, threshold);
+                    wCtx.lineTo(W, threshold);
+                    wCtx.stroke();
+                    wCtx.beginPath();
+                    wCtx.moveTo(0, H - threshold);
+                    wCtx.lineTo(W, H - threshold);
+                    wCtx.stroke();
+                    wCtx.setLineDash([]);
+
+                    // draw waveform
+                    wCtx.beginPath();
+                    wCtx.lineWidth = 1.5;
+                    const mid = H / 2;
+                    for (let i = 0; i < points; i++) {
+                        const x = (i / (points - 1)) * W;
+                        const y = mid + waveData[i];
+                        if (i === 0) {
+                            wCtx.moveTo(x, y);
+                        } else {
+                            wCtx.lineTo(x, y);
+                        }
+                    }
+                    // colour by stress level
+                    const r = Math.round(45 + stressLevel * 155);
+                    const g = Math.round(90 - stressLevel * 40);
+                    const b = Math.round(61 - stressLevel * 20);
+                    wCtx.strokeStyle = `rgb(${r},${g},${b})`;
+                    wCtx.stroke();
+
+                    // cavitation event markers
+                    cavitationEvents = cavitationEvents.filter(e => e.life > 0);
+                    cavitationEvents.forEach(e => {
+                        e.x -= 1.5;
+                        e.life -= 0.018;
+                        const alpha = e.life;
+                        wCtx.beginPath();
+                        wCtx.arc(e.x, mid, 4 * (1 - e.life * 0.5), 0, Math.PI * 2);
+                        wCtx.fillStyle = e.type === 'stress'
+                            ? `rgba(200,80,80,${alpha})`
+                            : `rgba(45,90,61,${alpha})`;
+                        wCtx.fill();
+                    });
+
+                    requestAnimationFrame(drawWave);
+                }
+                drawWave();
+
+                window.addEventListener('resize', () => {
+                    cropCanvas.width = cropCanvas.offsetWidth * window.devicePixelRatio;
+                    cropCanvas.height = 80 * window.devicePixelRatio;
+                    wCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+                });
             }
         });
 
