@@ -58,7 +58,7 @@
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.86rem; font-weight: 400; transition: color 0.2s; }
         .nav-links a:hover { color: var(--ink); }
-        .nav-cta { font-size: 0.84rem; font-weight: 500; padding: 0.55rem 1.4rem; background: var(--accent); color: #fff; text-decoration: none; transition: opacity 0.2s; }
+        .nav-cta { font-size: 0.84rem; font-weight: 500; padding: 0.55rem 1.4rem; background: var(--accent); color: #fff; text-decoration: none; transition: opacity 0.2s; cursor: pointer; border: none; }
         .nav-cta:hover { opacity: 0.85; }
 
         /* ── HERO ── */
@@ -84,7 +84,6 @@
             z-index: 0;
             overflow: hidden;
         }
-        /* slow sway animation for wheat stalks */
         @keyframes sway {
             0%, 100% { transform: rotate(0deg); }
             50% { transform: rotate(1.5deg); }
@@ -142,12 +141,6 @@
             transform-origin: bottom center;
             animation: sway2 7.5s ease-in-out infinite 0.5s;
         }
-        .agri-dots {
-            position: absolute;
-            top: 30%;
-            left: 0;
-            opacity: 0.04;
-        }
 
         .hero-left { position: relative; z-index: 1; }
         .hero-pill { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: var(--accent-lt); padding: 0.3rem 0.9rem; margin-bottom: 2rem; border-radius: 2px; }
@@ -186,6 +179,19 @@
         .section-intro { font-size: 1rem; color: var(--muted); max-width: 500px; line-height: 1.85; font-weight: 300; }
         hr.divider { border: none; border-top: 1px solid var(--border); margin: 0 5rem; }
 
+        /* ── CROPPULSE ── */
+        #croppulse { background: var(--surface); }
+        .cp-container { display: flex; flex-direction: column; gap: 3rem; margin-top: 3rem; }
+        .cp-step { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border); background: var(--bg); }
+        .cp-step-info { padding: 3rem; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border); }
+        .cp-step-visual { padding: 3rem; display: flex; align-items: center; justify-content: center; background: #fff; }
+
+        /* ── DATA COLLECTOR EMBED LAYER ── */
+        #data-collector { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .dc-wrapper { max-width: 1200px; margin: 0 auto; }
+        .iframe-container { position: relative; width: 100%; height: 750px; background: var(--surface); border: 1px solid var(--border); box-shadow: 0 4px 30px rgba(45, 90, 61, 0.03); }
+        .iframe-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
         /* ── SECTORS ── */
         #sectors { background: var(--bg2); }
         .sectors-header { margin-bottom: 3.5rem; }
@@ -196,8 +202,8 @@
         .sector-name { font-family: 'Fraunces', serif; font-weight: 400; font-size: 1.12rem; margin-bottom: 0.6rem; color: var(--ink); }
         .sector-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.75; font-weight: 300; }
 
-        /* ── FEATURES ── */
-        #features { background: var(--surface); }
+        /* ── FEATURES / SERVICES ── */
+        #services { background: var(--surface); }
         .features-layout { display: grid; grid-template-columns: 2fr 3fr; gap: 6rem; align-items: start; }
         .features-sticky { position: sticky; top: 8rem; }
         .features-list { display: flex; flex-direction: column; }
@@ -231,6 +237,7 @@
 
         /* ── USE CASES ── */
         #usecases { background: var(--surface); }
+        .usecases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
         .case-card { padding: 2rem 1.8rem; border: 1px solid var(--border); background: var(--bg); transition: border-color 0.2s, transform 0.25s; }
         .case-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
         .case-sector { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
@@ -268,13 +275,6 @@
         .footer-links a:hover { color: var(--ink); }
         .footer-copy { font-size: 0.78rem; color: var(--muted); }
 
-        /* ── FADE UP ── */
-        .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-        /* ── CROPPULSE PULSE ── */
-        @keyframes cpPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
-
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
             #hero { grid-template-columns: 1fr; padding: 7rem 2.5rem 4rem; gap: 3rem; }
@@ -283,6 +283,7 @@
             .features-layout { grid-template-columns: 1fr; gap: 2.5rem; }
             .features-sticky { position: static; }
             .analytics-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .iframe-container { height: 600px; }
         }
         @media (max-width: 900px) {
             nav { padding: 1rem 1.5rem; }
@@ -294,7 +295,6 @@
             footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
             .cp-step { grid-template-columns: 1fr !important; }
             .cp-step > div:first-child { border-right: none !important; border-bottom: 1px solid var(--border); }
-            .agri-wheat-left, .agri-wheat-left2, .agri-grain-tr, .agri-stem-br { opacity: 0.05; }
         }
         @media (max-width: 580px) {
             h1 { font-size: 2.5rem; }
@@ -302,6 +302,7 @@
             .sectors-grid, .process-steps { grid-template-columns: 1fr; }
             .hero-right { grid-template-columns: 1fr 1fr; }
             .stat-card.wide { grid-column: span 2; flex-direction: column; gap: 1rem; }
+            .iframe-container { height: 500px; }
         }
 
         /* ── CHATBOT ── */
@@ -313,7 +314,7 @@
         .chatbot-header h4 { margin: 0; font-family: 'Fraunces', serif; font-weight: 400; font-size: 1.1rem; }
         .chatbot-close { background: none; border: none; color: var(--surface); font-size: 1.2rem; cursor: pointer; opacity: 0.8; transition: opacity 0.2s; }
         .chatbot-close:hover { opacity: 1; }
-        .chatbot-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 1rem; max-height: 400px; overflow-y: auto; }
+        .chatbot-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 1rem; max-height: 300px; overflow-y: auto; }
         .chat-msg { padding: 0.8rem 1rem; border-radius: 8px; font-size: 0.9rem; max-width: 85%; line-height: 1.4; }
         .chat-msg.bot { background: var(--bg); border: 1px solid var(--border); align-self: flex-start; }
         .chat-msg.user { background: var(--ink); color: var(--surface); align-self: flex-end; }
@@ -329,11 +330,11 @@
 
 <body>
 
-    <!-- NAV -->
     <nav aria-label="Main navigation">
         <div class="wordmark" aria-label="Atriom-AI Home">Atriom<em>-AI</em></div>
         <ul class="nav-links">
             <li><a href="#croppulse">CropPulse</a></li>
+            <li><a href="#data-collector">Data Collector</a></li>
             <li><a href="#sectors">Sectors</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#analytics">Analytics</a></li>
@@ -341,611 +342,411 @@
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="javascript:void(0)" onclick="toggleChat()" class="nav-cta" aria-label="Open AI chat agent">Talk to our Agent</a>
+        <button onclick="toggleChat()" class="nav-cta" aria-label="Open AI chat agent">Talk to our Agent</button>
     </nav>
 
-    <!-- HERO -->
     <section id="hero" aria-label="Hero — Atriom-AI enterprise AI deployment">
         <div class="hero-bg" aria-hidden="true"></div>
         <div class="hero-bg2" aria-hidden="true"></div>
 
-        <!-- ═══════════════════════════════════════
-             SUBTLE AGRICULTURAL ILLUSTRATIONS
-             Pure SVG, no external images, very low opacity
-        ═══════════════════════════════════════ -->
         <div class="agri-illustrations" aria-hidden="true">
-
-            <!-- Wheat stalk left, tall -->
             <svg class="agri-wheat-left" width="80" height="420" viewBox="0 0 80 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- main stem -->
                 <path d="M40 420 C40 420 38 300 42 200 C44 140 40 80 40 20" stroke="#2d5a3d" stroke-width="2.5" stroke-linecap="round"/>
-                <!-- grain head -->
                 <ellipse cx="40" cy="28" rx="6" ry="18" fill="#2d5a3d" opacity="0.8"/>
                 <ellipse cx="32" cy="38" rx="5" ry="14" fill="#2d5a3d" opacity="0.7" transform="rotate(-18 32 38)"/>
                 <ellipse cx="48" cy="38" rx="5" ry="14" fill="#2d5a3d" opacity="0.7" transform="rotate(18 48 38)"/>
-                <ellipse cx="27" cy="55" rx="4.5" ry="12" fill="#2d5a3d" opacity="0.6" transform="rotate(-28 27 55)"/>
-                <ellipse cx="53" cy="55" rx="4.5" ry="12" fill="#2d5a3d" opacity="0.6" transform="rotate(28 53 55)"/>
-                <ellipse cx="24" cy="72" rx="4" ry="11" fill="#2d5a3d" opacity="0.5" transform="rotate(-35 24 72)"/>
-                <ellipse cx="56" cy="72" rx="4" ry="11" fill="#2d5a3d" opacity="0.5" transform="rotate(35 56 72)"/>
-                <!-- awns (bristles) -->
                 <line x1="40" y1="14" x2="40" y2="2" stroke="#2d5a3d" stroke-width="1.2" opacity="0.8"/>
-                <line x1="34" y1="28" x2="28" y2="14" stroke="#2d5a3d" stroke-width="1" opacity="0.6"/>
-                <line x1="46" y1="28" x2="52" y2="14" stroke="#2d5a3d" stroke-width="1" opacity="0.6"/>
-                <!-- leaves -->
-                <path d="M40 180 C40 180 20 165 8 145" stroke="#2d5a3d" stroke-width="2" stroke-linecap="round" fill="none"/>
-                <path d="M40 240 C40 240 60 222 74 200" stroke="#2d5a3d" stroke-width="2" stroke-linecap="round" fill="none"/>
-                <path d="M40 310 C40 310 18 295 6 272" stroke="#2d5a3d" stroke-width="1.8" stroke-linecap="round" fill="none"/>
             </svg>
 
-            <!-- Second wheat stalk, slightly shorter -->
             <svg class="agri-wheat-left2" width="60" height="340" viewBox="0 0 60 340" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M30 340 C30 340 29 240 31 160 C32 110 30 60 30 18" stroke="#2d5a3d" stroke-width="2" stroke-linecap="round"/>
                 <ellipse cx="30" cy="24" rx="5" ry="14" fill="#2d5a3d" opacity="0.8"/>
-                <ellipse cx="24" cy="32" rx="4" ry="11" fill="#2d5a3d" opacity="0.7" transform="rotate(-18 24 32)"/>
-                <ellipse cx="36" cy="32" rx="4" ry="11" fill="#2d5a3d" opacity="0.7" transform="rotate(18 36 32)"/>
-                <ellipse cx="20" cy="47" rx="3.5" ry="9" fill="#2d5a3d" opacity="0.55" transform="rotate(-28 20 47)"/>
-                <ellipse cx="40" cy="47" rx="3.5" ry="9" fill="#2d5a3d" opacity="0.55" transform="rotate(28 40 47)"/>
                 <line x1="30" y1="12" x2="30" y2="2" stroke="#2d5a3d" stroke-width="1" opacity="0.8"/>
-                <line x1="25" y1="22" x2="20" y2="11" stroke="#2d5a3d" stroke-width="0.9" opacity="0.6"/>
-                <line x1="35" y1="22" x2="40" y2="11" stroke="#2d5a3d" stroke-width="0.9" opacity="0.6"/>
-                <path d="M30 145 C30 145 14 133 5 116" stroke="#2d5a3d" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-                <path d="M30 210 C30 210 46 198 55 180" stroke="#2d5a3d" stroke-width="1.6" stroke-linecap="round" fill="none"/>
             </svg>
 
-            <!-- Botanical leaf top-left -->
             <svg class="agri-leaf-top" width="140" height="100" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Large curved leaf -->
                 <path d="M10 90 C10 90 -5 50 30 20 C60 -5 130 10 130 10 C130 10 100 70 10 90Z" stroke="#2d5a3d" stroke-width="1.8" fill="rgba(45,90,61,0.12)"/>
-                <!-- midrib -->
                 <path d="M10 90 C40 60 90 30 130 10" stroke="#2d5a3d" stroke-width="1.5" stroke-linecap="round"/>
-                <!-- lateral veins -->
-                <path d="M30 74 C45 62 60 48 75 38" stroke="#2d5a3d" stroke-width="0.8" opacity="0.7"/>
-                <path d="M50 58 C62 50 74 40 88 32" stroke="#2d5a3d" stroke-width="0.8" opacity="0.7"/>
-                <path d="M68 44 C78 38 90 30 103 24" stroke="#2d5a3d" stroke-width="0.8" opacity="0.6"/>
             </svg>
 
-            <!-- Root system bottom-left area -->
             <svg class="agri-roots" width="160" height="80" viewBox="0 0 160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M80 0 C80 0 75 20 60 35 C45 50 20 55 5 65" stroke="#2d5a3d" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M80 0 C80 0 82 22 75 40 C68 55 60 65 55 75" stroke="#2d5a3d" stroke-width="1.4" stroke-linecap="round"/>
                 <path d="M80 0 C80 0 88 18 100 32 C112 46 130 50 145 60" stroke="#2d5a3d" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M60 35 C55 42 40 50 30 58" stroke="#2d5a3d" stroke-width="1" stroke-linecap="round"/>
-                <path d="M100 32 C108 40 118 48 125 55" stroke="#2d5a3d" stroke-width="1" stroke-linecap="round"/>
-                <path d="M75 40 C65 48 58 58 52 68" stroke="#2d5a3d" stroke-width="0.9" stroke-linecap="round"/>
             </svg>
 
-            <!-- Grain / wheat head top-right -->
             <svg class="agri-grain-tr" width="70" height="320" viewBox="0 0 70 320" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M35 320 C35 320 33 220 36 140 C37 90 35 40 35 10" stroke="#2d5a3d" stroke-width="2.2" stroke-linecap="round"/>
                 <ellipse cx="35" cy="17" rx="5.5" ry="16" fill="#2d5a3d" opacity="0.8"/>
-                <ellipse cx="28" cy="28" rx="4.5" ry="13" fill="#2d5a3d" opacity="0.7" transform="rotate(-20 28 28)"/>
-                <ellipse cx="42" cy="28" rx="4.5" ry="13" fill="#2d5a3d" opacity="0.7" transform="rotate(20 42 28)"/>
-                <ellipse cx="23" cy="44" rx="4" ry="11" fill="#2d5a3d" opacity="0.6" transform="rotate(-30 23 44)"/>
-                <ellipse cx="47" cy="44" rx="4" ry="11" fill="#2d5a3d" opacity="0.6" transform="rotate(30 47 44)"/>
-                <ellipse cx="20" cy="60" rx="3.5" ry="10" fill="#2d5a3d" opacity="0.5" transform="rotate(-38 20 60)"/>
-                <ellipse cx="50" cy="60" rx="3.5" ry="10" fill="#2d5a3d" opacity="0.5" transform="rotate(38 50 60)"/>
-                <line x1="35" y1="4" x2="35" y2="0" stroke="#2d5a3d" stroke-width="1" opacity="0.8"/>
-                <line x1="30" y1="16" x2="24" y2="4" stroke="#2d5a3d" stroke-width="0.9" opacity="0.6"/>
-                <line x1="40" y1="16" x2="46" y2="4" stroke="#2d5a3d" stroke-width="0.9" opacity="0.6"/>
-                <path d="M35 130 C35 130 55 118 64 100" stroke="#2d5a3d" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-                <path d="M35 200 C35 200 15 185 6 165" stroke="#2d5a3d" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-                <path d="M35 260 C35 260 52 248 62 230" stroke="#2d5a3d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
             </svg>
-
-            <!-- Slender stem bottom-right -->
-            <svg class="agri-stem-br" width="50" height="200" viewBox="0 0 50 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M25 200 C25 200 24 140 26 90 C27 60 25 30 25 8" stroke="#2d5a3d" stroke-width="1.8" stroke-linecap="round"/>
-                <ellipse cx="25" cy="13" rx="4" ry="11" fill="#2d5a3d" opacity="0.75"/>
-                <ellipse cx="20" cy="21" rx="3.5" ry="9" fill="#2d5a3d" opacity="0.65" transform="rotate(-18 20 21)"/>
-                <ellipse cx="30" cy="21" rx="3.5" ry="9" fill="#2d5a3d" opacity="0.65" transform="rotate(18 30 21)"/>
-                <ellipse cx="17" cy="33" rx="3" ry="8" fill="#2d5a3d" opacity="0.5" transform="rotate(-28 17 33)"/>
-                <ellipse cx="33" cy="33" rx="3" ry="8" fill="#2d5a3d" opacity="0.5" transform="rotate(28 33 33)"/>
-                <path d="M25 90 C25 90 10 80 3 68" stroke="#2d5a3d" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-                <path d="M25 140 C25 140 38 130 44 115" stroke="#2d5a3d" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-            </svg>
-
-            <!-- Subtle scattered seed dots -->
-            <svg class="agri-dots" width="60" height="200" viewBox="0 0 60 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="10" cy="20" rx="3" ry="5" fill="#2d5a3d" transform="rotate(-20 10 20)"/>
-                <ellipse cx="40" cy="55" rx="2.5" ry="4" fill="#2d5a3d" transform="rotate(10 40 55)"/>
-                <ellipse cx="15" cy="95" rx="3" ry="5" fill="#2d5a3d" transform="rotate(-30 15 95)"/>
-                <ellipse cx="48" cy="130" rx="2" ry="3.5" fill="#2d5a3d" transform="rotate(15 48 130)"/>
-                <ellipse cx="8" cy="165" rx="2.5" ry="4" fill="#2d5a3d" transform="rotate(-10 8 165)"/>
-                <ellipse cx="35" cy="190" rx="2" ry="3" fill="#2d5a3d" transform="rotate(25 35 190)"/>
-            </svg>
-
         </div>
-        <!-- END AGRI ILLUSTRATIONS -->
 
-        <div class="hero-left fade-up visible">
-            <div class="hero-pill">Enterprise AI Deployment</div>
-            <h1>Intelligence<br>deployed where<br>it <em>matters most.</em></h1>
-            <p class="hero-sub">Atriom-AI builds and deploys production-ready AI systems across the sectors that run the
-                world — from hospitals and schools to supply chains and factory floors.</p>
+        <div class="hero-left">
+            <div class="hero-pill">Next-Generation Infrastructure</div>
+            <h1>Enterprise <em>AI Systems</em> for Scaled Industries</h1>
+            <p class="hero-sub">Atriom-AI crafts, deploys, and orchestrates specialized agentic data networks designed to augment enterprise performance across global sectors.</p>
             <div class="hero-actions">
-                <a href="javascript:void(0)" onclick="toggleChat()" class="btn-primary" aria-label="Talk to our AI agent">Talk to our Agent</a>
-                <a href="#croppulse" class="btn-ghost">See CropPulse →</a>
+                <a href="#contact" class="btn-primary">Request Integration</a>
+                <a href="#services" class="btn-ghost">Explore Solutions</a>
             </div>
         </div>
 
-        <div class="hero-right fade-up visible" style="transition-delay:0.15s;">
+        <div class="hero-right">
+            <div class="stat-card">
+                <div class="stat-val">99.8<span>%</span></div>
+                <div class="stat-label">System Uptime In Production</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">4.2<span>x</span></div>
+                <div class="stat-label">Average Operational Velocity</div>
+            </div>
             <div class="stat-card wide">
-                <div>
-                    <div class="stat-val">5<span>+</span></div>
-                    <div class="stat-label">Industry Verticals</div>
+                <div class="stat-mini">
+                    <div class="stat-val">10<span>M+</span></div>
+                    <div class="stat-label">Data Streams Tracked Daily</div>
                 </div>
                 <div class="vline"></div>
                 <div class="stat-mini">
-                    <div class="stat-val">24<span>/7</span></div>
-                    <div class="stat-label">Live Monitoring</div>
+                    <div class="stat-val">&lt;1.2<span>s</span></div>
+                    <div class="stat-label">Model Inference Latency</div>
                 </div>
-                <div class="vline"></div>
-                <div class="stat-mini">
-                    <div class="stat-val" style="font-size:1.8rem;">AI<span>.</span>First</div>
-                    <div class="stat-label">Architecture</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-val" style="font-size:1.6rem;">Real-Time</div>
-                <div class="stat-label">Predictive Analytics</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-val" style="font-size:1.6rem;">Custom</div>
-                <div class="stat-label">AI Chatbots</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-val">∞</div>
-                <div class="stat-label">Scalable Infra</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-val" style="font-size:1.6rem;">Deep</div>
-                <div class="stat-label">Data Intelligence</div>
             </div>
         </div>
     </section>
 
-    <!-- MARQUEE -->
     <div class="marquee-wrap" aria-hidden="true">
         <div class="marquee-track">
-            <span>Education</span><span class="dot">◆</span>
-            <span>Healthcare</span><span class="dot">◆</span>
-            <span>Real Estate</span><span class="dot">◆</span>
-            <span>Logistics</span><span class="dot">◆</span>
-            <span>Industrial</span><span class="dot">◆</span>
-            <span>AI Chatbots</span><span class="dot">◆</span>
-            <span>Data Analytics</span><span class="dot">◆</span>
-            <span>Performance Monitoring</span><span class="dot">◆</span>
-            <span>Resource Management</span><span class="dot">◆</span>
-            <span>Result Analysis</span><span class="dot">◆</span>
-            <span>Predictive AI</span><span class="dot">◆</span>
-            <span>Education</span><span class="dot">◆</span>
-            <span>Healthcare</span><span class="dot">◆</span>
-            <span>Real Estate</span><span class="dot">◆</span>
-            <span>Logistics</span><span class="dot">◆</span>
-            <span>Industrial</span><span class="dot">◆</span>
-            <span>AI Chatbots</span><span class="dot">◆</span>
-            <span>Data Analytics</span><span class="dot">◆</span>
-            <span>Performance Monitoring</span><span class="dot">◆</span>
-            <span>Resource Management</span><span class="dot">◆</span>
-            <span>Result Analysis</span><span class="dot">◆</span>
-            <span>Predictive AI</span><span class="dot">◆</span>
+            <span>Education Technology</span><span class="dot">✦</span>
+            <span>Healthcare Logistics</span><span class="dot">✦</span>
+            <span>Predictive Intelligence</span><span class="dot">✦</span>
+            <span>Real Estate Systems</span><span class="dot">✦</span>
+            <span>Agentic Workflows</span><span class="dot">✦</span>
+            <span>ERP Integrations</span><span class="dot">✦</span>
+            <span>Education Technology</span><span class="dot">✦</span>
+            <span>Healthcare Logistics</span><span class="dot">✦</span>
+            <span>Predictive Intelligence</span><span class="dot">✦</span>
+            <span>Real Estate Systems</span><span class="dot">✦</span>
+            <span>Agentic Workflows</span><span class="dot">✦</span>
+            <span>ERP Integrations</span><span class="dot">✦</span>
         </div>
     </div>
 
-    <!-- CROPPULSE -->
-    <section id="croppulse" aria-labelledby="croppulse-heading" style="background: var(--surface); position: relative; overflow: hidden;">
-        <div aria-hidden="true" style="position:absolute;top:-120px;right:-80px;width:480px;height:480px;background:radial-gradient(ellipse,rgba(45,90,61,0.06) 0%,transparent 70%);pointer-events:none;"></div>
-        <div aria-hidden="true" style="position:absolute;bottom:-60px;left:-60px;width:320px;height:320px;background:radial-gradient(ellipse,rgba(45,90,61,0.04) 0%,transparent 70%);pointer-events:none;"></div>
-
-        <div class="fade-up">
-            <span class="section-tag">Featured Product</span>
-            <div style="display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:0.8rem;flex-wrap:wrap;">
-                <h2 id="croppulse-heading" style="margin-bottom:0;">Introducing <em>CropPulse</em> —<br>the heartbeat of your harvest.</h2>
-            </div>
-            <p class="section-intro" style="max-width:620px;">CropPulse is an agricultural AI system that detects plant stress at the physiological level — using ultrasonic acoustics and on-device AI to deliver precise, field-level interventions before visible symptoms appear.</p>
-        </div>
-
-        <div class="fade-up" style="margin-top:3rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);">
-            <div style="background:var(--bg);padding:2rem 1.8rem;">
-                <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Sensor Range</div>
-                <div style="font-family:'Fraunces',serif;font-weight:300;font-size:2.2rem;letter-spacing:-0.04em;color:var(--ink);">20–150<span style="color:var(--accent);">kHz</span></div>
-                <div style="font-size:0.8rem;color:var(--muted);margin-top:0.3rem;">Ultrasonic band — far beyond human hearing</div>
-            </div>
-            <div style="background:var(--bg);padding:2rem 1.8rem;">
-                <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Detection Types</div>
-                <div style="font-family:'Fraunces',serif;font-weight:300;font-size:2.2rem;letter-spacing:-0.04em;color:var(--ink);">3<span style="color:var(--accent);">+</span></div>
-                <div style="font-size:0.8rem;color:var(--muted);margin-top:0.3rem;">Drought · Pest Activity · Mechanical Trauma</div>
-            </div>
-            <div style="background:var(--bg);padding:2rem 1.8rem;">
-                <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Connectivity</div>
-                <div style="font-family:'Fraunces',serif;font-weight:300;font-size:2.2rem;letter-spacing:-0.04em;color:var(--ink);">Cloud<span style="color:var(--accent);">.</span></div>
-                <div style="font-size:0.8rem;color:var(--muted);margin-top:0.3rem;">On-device CNN — with AI insights</div>
-            </div>
-        </div>
-
-        <div class="fade-up" style="margin-top:2rem;background:var(--bg);border:1px solid var(--border);padding:1.8rem 2rem;">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem;">
-                <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;animation:cpPulse 1.4s ease-in-out infinite;"></span>
-                Live Ultrasonic Signal — Cavitation Events Detected
-            </div>
-            <canvas id="cropWave" height="80" style="width:100%;display:block;" aria-label="Live ultrasonic waveform" role="img"></canvas>
-            <div style="display:flex;gap:2rem;margin-top:0.8rem;flex-wrap:wrap;">
-                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;"><span style="width:12px;height:2px;background:var(--accent);display:inline-block;"></span>Cavitation click</div>
-                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;"><span style="width:12px;height:2px;background:rgba(200,80,80,0.7);display:inline-block;"></span>Stress threshold crossed</div>
-                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;"><span style="width:12px;height:2px;background:var(--border2);display:inline-block;"></span>Ambient noise (filtered)</div>
-            </div>
-        </div>
-
-        <div class="fade-up" style="margin-top:3rem;">
-            <span class="section-tag">How It Works</span>
-            <h3 style="font-family:'Fraunces',serif;font-weight:300;font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:-0.02em;color:var(--ink);margin-bottom:2.5rem;">From stem to <em>decision</em> in five stages.</h3>
-            <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--border);">
-                <div class="cp-step" style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--border);background:var(--surface);transition:background 0.2s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--surface)'">
-                    <div style="padding:2rem 1.8rem;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;">
-                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Step 01</div>
-                        <div style="font-size:1.6rem;margin-bottom:0.4rem;">🌿</div>
-                        <div style="font-weight:500;font-size:0.93rem;color:var(--ink);">Sensors</div>
-                    </div>
-                    <div style="padding:2rem 2.2rem;">
-                        <h4 style="font-family:'Fraunces',serif;font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem;">Piezoelectric Ultrasonic Nodes</h4>
-                        <p style="font-size:0.87rem;color:var(--muted);line-height:1.8;font-weight:300;">Sensor nodes are mounted near crop stems and continuously listen across 20–150 kHz — capturing the microscopic clicks plants produce when internal water-conducting vessels break down under stress, a process called <strong style="color:var(--ink2);font-weight:500;">cavitation</strong>. Unlike cameras or soil probes, these sensors listen directly to the plant's internal physiology, making them the earliest possible indicator of stress.</p>
-                    </div>
+    <section id="croppulse">
+        <span class="section-tag">Featured Infrastructure</span>
+        <h2>CropPulse<em> Engine</em></h2>
+        <p class="section-intro">Our proprietary specialized core framework built to automate macro data intelligence parsing, environmental modelling, and resource balancing cycles.</p>
+        
+        <div class="cp-container">
+            <div class="cp-step">
+                <div class="cp-step-info">
+                    <span class="section-tag">Phase 01</span>
+                    <h3>Ingestion & Stream Parsing</h3>
+                    <p style="font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem;">Plugs securely into cross-platform standard database networks and multi-source structural nodes to harvest operational logs natively.</p>
                 </div>
-                <div class="cp-step" style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--border);background:var(--surface);transition:background 0.2s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--surface)'">
-                    <div style="padding:2rem 1.8rem;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;">
-                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Step 02</div>
-                        <div style="font-size:1.6rem;margin-bottom:0.4rem;">🎚️</div>
-                        <div style="font-weight:500;font-size:0.93rem;color:var(--ink);">Signal Filter</div>
-                    </div>
-                    <div style="padding:2rem 2.2rem;">
-                        <h4 style="font-family:'Fraunces',serif;font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem;">High-Pass Spectral &amp; Coincidence Filtering</h4>
-                        <p style="font-size:0.87rem;color:var(--muted);line-height:1.8;font-weight:300;">Raw farm audio contains significant noise — wind, irrigation systems, machinery, and insects. A high-pass spectral filter strips out everything below 20 kHz. A <strong style="color:var(--ink2);font-weight:500;">two-microphone coincidence filter</strong> then cross-checks both sensors simultaneously — if only one picks up a signal, it is rejected as environmental noise. Only genuine plant-origin clicks pass through.</p>
-                    </div>
-                </div>
-                <div class="cp-step" style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--border);background:var(--surface);transition:background 0.2s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--surface)'">
-                    <div style="padding:2rem 1.8rem;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;">
-                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Step 03</div>
-                        <div style="font-size:1.6rem;margin-bottom:0.4rem;">🧠</div>
-                        <div style="font-weight:500;font-size:0.93rem;color:var(--ink);">Edge AI</div>
-                    </div>
-                    <div style="padding:2rem 2.2rem;">
-                        <h4 style="font-family:'Fraunces',serif;font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem;">On-Device CNN Classifier (PyTorch)</h4>
-                        <p style="font-size:0.87rem;color:var(--muted);line-height:1.8;font-weight:300;">The filtered signal is passed to a <strong style="color:var(--ink2);font-weight:500;">PyTorch Convolutional Neural Network running entirely on the sensor node</strong> — no internet required. The CNN analyses each click's frequency profile, intensity, and timing pattern against learned stress signatures, classifying the type: drought, pest activity, or mechanical trauma. Each produces a distinctly different acoustic fingerprint. Classification happens in the field, in real time.</p>
-                    </div>
-                </div>
-                <div class="cp-step" style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--border);background:var(--surface);transition:background 0.2s;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background='var(--surface)'">
-                    <div style="padding:2rem 1.8rem;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;">
-                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Step 04</div>
-                        <div style="font-size:1.6rem;margin-bottom:0.4rem;">💬</div>
-                        <div style="font-weight:500;font-size:0.93rem;color:var(--ink);">LLM Reasoning</div>
-                    </div>
-                    <div style="padding:2rem 2.2rem;">
-                        <h4 style="font-family:'Fraunces',serif;font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem;">Agronomic Inference &amp; Recommendation</h4>
-                        <p style="font-size:0.87rem;color:var(--muted);line-height:1.8;font-weight:300;">The LLM layer takes the CNN's classification — e.g., <em style="color:var(--accent);">"drought stress detected, severity rising, Day 3"</em> — and reasons over it alongside crop species, growth stage, weather patterns, soil moisture history, and past stress events. It generates a <strong style="color:var(--ink2);font-weight:500;">specific, human-readable agronomic action</strong>: which rows to irrigate, how much water to apply, or whether to deploy a drone to a GPS coordinate. Not just an alert — a decision.</p>
-                    </div>
-                </div>
-                <div class="cp-step" style="display:grid;grid-template-columns:200px 1fr;background:var(--accent-lt);transition:background 0.2s;" onmouseover="this.style.background='rgba(45,90,61,0.1)'" onmouseout="this.style.background='var(--accent-lt)'">
-                    <div style="padding:2rem 1.8rem;border-right:1px solid rgba(45,90,61,0.18);display:flex;flex-direction:column;justify-content:center;">
-                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;">Step 05</div>
-                        <div style="font-size:1.6rem;margin-bottom:0.4rem;">🚁</div>
-                        <div style="font-weight:500;font-size:0.93rem;color:var(--ink);">Alert &amp; Action</div>
-                    </div>
-                    <div style="padding:2rem 2.2rem;">
-                        <h4 style="font-family:'Fraunces',serif;font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem;">Autonomous Intervention &amp; Continuous Learning</h4>
-                        <p style="font-size:0.87rem;color:var(--muted);line-height:1.8;font-weight:300;">Prioritised alerts arrive in the farmer's dashboard with full reasoning visible. For farms with integrated infrastructure, CropPulse communicates directly with <strong style="color:var(--ink2);font-weight:500;">irrigation controllers and drone-spraying systems</strong> — enabling fully autonomous intervention before the farmer sees the notification. Every action is logged, building a farm-specific dataset that continuously improves model accuracy over time.</p>
+                <div class="cp-step-visual">
+                    <div style="width: 100%; height: 120px; border: 1px dashed var(--border2); background: var(--bg); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--muted);">
+                        [Data Node Stream] ──> [Parser Module]
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="fade-up" style="margin-top:2.5rem;background:var(--ink);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
-            <div>
-                <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:0.5rem;">CropPulse · Agricultural AI</div>
-                <div style="font-family:'Fraunces',serif;font-weight:300;font-size:1.4rem;color:#fff;letter-spacing:-0.02em;">Ready to hear what your crops are telling you?</div>
-            </div>
-            <a href="mailto:info@atriom-ai.com?subject=CropPulse%20Enquiry&body=I'm%20interested%20in%20learning%20more%20about%20CropPulse." style="display:inline-flex;align-items:center;gap:0.7rem;padding:0.9rem 2rem;background:var(--accent);color:#fff;text-decoration:none;font-weight:500;font-size:0.9rem;flex-shrink:0;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-                Enquire about CropPulse →
-            </a>
         </div>
     </section>
 
-    <!-- SECTORS -->
-    <section id="sectors" aria-labelledby="sectors-heading">
-        <div class="sectors-header fade-up">
-            <span class="section-tag">Where We Operate</span>
-            <h2 id="sectors-heading">Purpose-built AI for<br><em>every sector.</em></h2>
-            <p class="section-intro">Each domain gets a tailored AI stack — deep integrations built around sector-specific workflows, compliance requirements, and data models.</p>
-        </div>
-        <div class="sectors-layout fade-up" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; align-items: center;">
-            <div class="sectors-grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
-                <div class="sector-card" style="padding: 1.5rem;"><span class="sector-icon" aria-hidden="true">🎓</span><div class="sector-name">Education</div></div>
-                <div class="sector-card" style="padding: 1.5rem;"><span class="sector-icon" aria-hidden="true">🏥</span><div class="sector-name">Healthcare</div></div>
-                <div class="sector-card" style="padding: 1.5rem;"><span class="sector-icon" aria-hidden="true">🏢</span><div class="sector-name">Real Estate</div></div>
-                <div class="sector-card" style="padding: 1.5rem;"><span class="sector-icon" aria-hidden="true">🚚</span><div class="sector-name">Logistics</div></div>
-                <div class="sector-card" style="padding: 1.5rem;"><span class="sector-icon" aria-hidden="true">⚙️</span><div class="sector-name">Industry</div></div>
-                <div class="sector-card" style="padding: 1.5rem;"><span class="sector-icon" aria-hidden="true">📡</span><div class="sector-name">Enterprise</div></div>
+    <section id="data-collector">
+        <div class="dc-wrapper">
+            <span class="section-tag">Core Utility Interface</span>
+            <h2>Atriom <em>Data Collector</em> Console</h2>
+            <p class="section-intro" style="margin-bottom: 2.5rem;">Direct security-cleared processing interface node constructed to collect metrics, pipeline logs, and active stream configuration maps securely.</p>
+            
+            <div class="iframe-container">
+                <iframe 
+                    src="https://omkarsinghprojects1-hash.github.io/atriom_ai_data_collector/" 
+                    title="Atriom-AI Data Collector Application Node"
+                    allow="clipboard-write"
+                    loading="lazy">
+                </iframe>
             </div>
-            <div class="sectors-visual" style="display: flex; justify-content: center; position: relative; height: 350px;">
-                <canvas id="sectorsChart" aria-label="Sector distribution chart" role="img"></canvas>
+        </div>
+    </section>
+
+    <section id="sectors">
+        <div class="sectors-header">
+            <span class="section-tag">Target Ecosystems</span>
+            <h2>Tailored To Niche <em>Industry Workflows</em></h2>
+            <p class="section-intro">We avoid boilerplate wrapper answers. Every module matches the specialized lexicon, guardrails, and compliance regulations required by your exact domain.</p>
+        </div>
+        <div class="sectors-grid">
+            <div class="sector-card">
+                <span class="sector-icon">🔬</span>
+                <h3 class="sector-name">Healthcare Systems</h3>
+                <p class="sector-desc">Patient data routing optimization, automated diagnostics cross-referencing metrics, and operational flow management algorithms.</p>
+            </div>
+            <div class="sector-card">
+                <span class="sector-icon">🎓</span>
+                <h3 class="sector-name">Modern Education</h3>
+                <p class="sector-desc">Predictive performance analytics pathways, automated structural generation engines, and institutional intelligence matrices.</p>
+            </div>
+            <div class="sector-card">
+                <span class="sector-icon">📦</span>
+                <h3 class="sector-name">Logistics & Freight</h3>
+                <p class="sector-desc">Sub-second anomalies route detection, predictive freight decay matrix monitoring, and dynamic delivery routing adjustment models.</p>
+            </div>
+            <div class="sector-card">
+                <span class="sector-icon">🏢</span>
+                <h3 class="sector-name">Real Estate & Assets</h3>
+                <p class="sector-desc">Automated dynamic multi-variant valuation matrices, micro-market trend projection streams, and portfolio performance analysis.</p>
+            </div>
+            <div class="sector-card">
+                <span class="sector-icon">⚙️</span>
+                <h3 class="sector-name">Industrial Production</h3>
+                <p class="sector-desc">Proactive failure indicators, machine cycles timeline adjustments, and resource distribution automated balancing protocols.</p>
+            </div>
+            <div class="sector-card">
+                <span class="sector-icon">🛡️</span>
+                <h3 class="sector-name">Enterprise Infrastructure</h3>
+                <p class="sector-desc">Cross-layer automated secure file systems, deep enterprise search layers, and custom secure database interface nodes.</p>
             </div>
         </div>
     </section>
 
     <hr class="divider" />
 
-    <!-- SERVICES -->
-    <section id="services" aria-labelledby="services-heading">
+    <section id="services">
         <div class="features-layout">
-            <div class="features-sticky fade-up">
-                <span class="section-tag">Our Core Deployments</span>
-                <h2 id="services-heading">Enterprise AI services,<br><em>deployed seamlessly.</em></h2>
-                <p class="section-intro">We deploy custom-tailored Artificial Intelligence into your existing infrastructure — focusing on autonomous agents, deep data analysis, and seamless ERP software integrations across all sectors.</p>
+            <div class="features-sticky">
+                <span class="section-tag">Core Capabilities</span>
+                <h2>Integrated <em>Architecture</em> Component Frameworks</h2>
+                <p class="section-intro" style="margin-top: 1rem;">From system integration adapters up to autonomous orchestrators, we deploy complete end-to-end data stacks.</p>
             </div>
-            <div class="features-list fade-up" style="transition-delay:0.1s; display: flex; flex-direction: column; gap: 2rem;">
-                <div class="network-container" style="background: var(--surface); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
-                    <h3 style="font-family:'Fraunces', serif; margin-bottom: 1rem; color:var(--ink);">Live Agentic Network &amp; Data Flow</h3>
-                    <div class="network-visual" style="width:100%; height:280px; background:var(--bg); border-radius:8px; position: relative; overflow: hidden;">
-                        <canvas id="networkChart" style="width:100%; height:100%;" aria-label="Animated AI network graph" role="img"></canvas>
-                    </div>
+            <div class="features-list">
+                <div class="feature-item">
+                    <h3><span class="fn">F-01</span> Autonomous Action Agents</h3>
+                    <p>Self-correcting recursive workflows capable of executing cross-platform operations based on state targets rather than rigid scripts.</p>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <article class="feature-item" style="padding: 1.2rem; background: var(--accent-lt); border-radius: 8px;"><h3 style="margin-bottom:0.3rem;"><span class="fn">01</span>Deep Data Analysis</h3><p style="font-size: 0.85rem;">Transforming massive, siloed datasets across your sector into actionable intelligence.</p></article>
-                    <article class="feature-item" style="padding: 1.2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px;"><h3 style="margin-bottom:0.3rem;"><span class="fn">02</span>Agentic AI Workflows</h3><p style="font-size: 0.85rem;">Autonomous, self-prompting AI agents to handle lead capture, internal triage, and support.</p></article>
-                    <article class="feature-item" style="padding: 1.2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px;"><h3 style="margin-bottom:0.3rem;"><span class="fn">03</span>ERP Integration</h3><p style="font-size: 0.85rem;">Our data layers plug directly into your existing enterprise resource planning software.</p></article>
-                    <article class="feature-item" style="padding: 1.2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px;"><h3 style="margin-bottom:0.3rem;"><span class="fn">04</span>Predictive Modeling</h3><p style="font-size: 0.85rem;">Advanced statistical modeling for demand forecasting, resource mapping, and growth.</p></article>
+                <div class="feature-item">
+                    <h3><span class="fn">F-02</span> Real-Time Analytics Pipeline</h3>
+                    <p>Stream parsing infrastructure tracking incoming transactional logs, generating inferences at scale with sub-second delivery.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><span class="fn">F-03</span> Legacy ERP Adaptation</h3>
+                    <p>Secure custom middleware bridging advanced machine learning models directly into existing traditional management databases without structural downtime.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><span class="fn">F-04</span> Anomaly Detection Matrices</h3>
+                    <p>Continuous network analysis tracking outlier transactions, identifying errors, structural flaws, or security vectors natively.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ANALYTICS -->
-    <section id="analytics" aria-labelledby="analytics-heading">
+    <hr class="divider" />
+
+    <section id="analytics">
         <div class="analytics-inner">
-            <div class="fade-up">
-                <span class="section-tag">Data Intelligence Layer</span>
-                <h2 id="analytics-heading">Analytics that <em>actually</em><br>move the needle.</h2>
-                <p class="section-intro" style="margin-bottom:2.5rem;">Our analytics platform handles multi-source ingestion, real-time processing, and AI-layer inference in a single unified pipeline.</p>
-                <div class="analytics-visual" style="padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); display: block;">
-                    <div class="chart-heading" style="margin-bottom: 1rem;">Live AI Pipeline Throughput</div>
-                    <div style="width:100%; height:280px; position: relative;">
-                        <canvas id="liveChart" aria-label="Live AI pipeline throughput chart" role="img"></canvas>
+            <div class="analytics-visual">
+                <div class="chart-heading">System Load Metrics — Continuous Optimization</div>
+                <canvas id="loadChart" style="width: 100%; height: 220px;"></canvas>
+            </div>
+            <div class="analytics-pts">
+                <div>
+                    <span class="section-tag">Live Operations</span>
+                    <h2>Streaming Data <em>Intelligence</em></h2>
+                </div>
+                <div class="apt">
+                    <div class="apt-icon">⚡</div>
+                    <div>
+                        <h4>Sub-Second Stream Processing</h4>
+                        <p>Incoming datasets are processed instantly, transforming abstract operational vectors into scannable charts directly inside custom analytical boards.</p>
+                    </div>
+                </div>
+                <div class="apt">
+                    <div class="apt-icon">🔍</div>
+                    <div>
+                        <h4>Smart Anomaly Alert Triggers</h4>
+                        <p>Machine learning classification loops instantly isolate deviation vectors from target baselines, firing webhooks to infrastructure controllers automatically.</p>
                     </div>
                 </div>
             </div>
-            <div class="analytics-pts fade-up" style="transition-delay:0.1s;">
-                <div class="apt"><div class="apt-icon" aria-hidden="true">🔗</div><div><h3 style="font-size:0.93rem; font-weight:500; margin-bottom:0.3rem; color:var(--ink);">Multi-Source Data Ingestion</h3><p>Connect databases, IoT sensors, APIs, and third-party platforms. All data unified into a single intelligence layer.</p></div></div>
-                <div class="apt"><div class="apt-icon" aria-hidden="true">⚡</div><div><h3 style="font-size:0.93rem; font-weight:500; margin-bottom:0.3rem; color:var(--ink);">Real-Time Stream Processing</h3><p>Sub-second processing of live operational data. React to events as they happen rather than the next morning's report.</p></div></div>
-                <div class="apt"><div class="apt-icon" aria-hidden="true">🧠</div><div><h3 style="font-size:0.93rem; font-weight:500; margin-bottom:0.3rem; color:var(--ink);">ML Model Inference at Scale</h3><p>Deployed models score incoming data continuously — classifying, predicting, and flagging without manual intervention.</p></div></div>
-                <div class="apt"><div class="apt-icon" aria-hidden="true">📊</div><div><h3 style="font-size:0.93rem; font-weight:500; margin-bottom:0.3rem; color:var(--ink);">Custom Dashboards &amp; Reports</h3><p>Role-specific views for executives, operations managers, and floor supervisors — each seeing exactly what they need.</p></div></div>
-                <div class="apt"><div class="apt-icon" aria-hidden="true">🔔</div><div><h3 style="font-size:0.93rem; font-weight:500; margin-bottom:0.3rem; color:var(--ink);">Anomaly Detection &amp; Smart Alerts</h3><p>AI-identified outliers trigger instant notifications. Catch problems — fraud, quality drops, supply gaps — before they compound.</p></div></div>
+        </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="process">
+        <span class="section-tag">Implementation Timeline</span>
+        <h2>Our Disruption-Free <em>Four-Step Deployment</em></h2>
+        <p class="section-intro">We design and roll out customized networks through structured checkpoints constructed to guard live service availability.</p>
+        
+        <div class="process-steps">
+            <div class="step">
+                <span class="step-num">STEP 01</span>
+                <h3>Discovery & Scoping</h3>
+                <p>Deep audit of present database architecture, legacy application touchpoints, software boundaries, and workflow logic patterns.</p>
+                <div class="step-connector"></div>
+            </div>
+            <div class="step">
+                <span class="step-num">STEP 02</span>
+                <h3>Data & Model Design</h3>
+                <p>Constructing target custom knowledge base vectors, safety constraints, multi-agent communication hierarchies, and specialized models.</p>
+                <div class="step-connector"></div>
+            </div>
+            <div class="step">
+                <span class="step-num">STEP 03</span>
+                <h3>Integration & Testing</h3>
+                <p>Deploying application layers into non-production environments to audit pipeline durability under simulated production loads.</p>
+                <div class="step-connector"></div>
+            </div>
+            <div class="step">
+                <span class="step-num">STEP 04</span>
+                <h3>Monitor & Optimise</h3>
+                <p>Live rollout with sub-second tracking monitors constantly tuning parameters to reach optimal efficiency curves automatically.</p>
             </div>
         </div>
     </section>
 
-    <!-- PROCESS -->
-    <section id="process" aria-labelledby="process-heading">
-        <span class="section-tag fade-up">Deployment Process</span>
-        <h2 id="process-heading" class="fade-up">From discovery to live<br>deployment — <em>fast.</em></h2>
-        <div class="process-steps fade-up">
-            <div class="step"><span class="step-num">STEP 01</span><h3>Discovery &amp; Scoping</h3><p>We audit workflows and map an actionable AI roadmap.</p><div class="step-connector" aria-hidden="true"></div></div>
-            <div class="step"><span class="step-num">STEP 02</span><h3>Data &amp; Model Design</h3><p>Custom pipelines are built and models trained on your data.</p><div class="step-connector" aria-hidden="true"></div></div>
-            <div class="step"><span class="step-num">STEP 03</span><h3>Integration &amp; Testing</h3><p>Staged rollouts ensure zero operational disruption.</p><div class="step-connector" aria-hidden="true"></div></div>
-            <div class="step"><span class="step-num">STEP 04</span><h3>Monitor &amp; Optimise</h3><p>Continuous learning keeps your AI accurate post-launch.</p></div>
-        </div>
-    </section>
+    <hr class="divider" />
 
-    <!-- USE CASES -->
-    <section id="usecases" aria-labelledby="usecases-heading">
-        <span class="section-tag fade-up">Real-World Impact</span>
-        <h2 id="usecases-heading" class="fade-up">What intelligent systems look<br>like <em>in practice.</em></h2>
-        <div class="usecases-layout fade-up" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; align-items: start;">
-            <div class="heatmap-demo">
-                <h3 style="font-family:'Fraunces', serif; margin-bottom: 1rem; color:var(--ink);">Real-time Factory Floor Anomaly Detection</h3>
-                <div class="heatmap-container" aria-label="Factory floor anomaly heatmap" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);"></div>
+    <section id="usecases">
+        <span class="section-tag">Applied Production Workflows</span>
+        <h2>Realities From the <em>Field</em></h2>
+        <div class="usecases-grid">
+            <div class="case-card">
+                <div class="case-sector">Logistics Deployment</div>
+                <p>"By routing real-time global telemetry metrics through Atriom systems, cross-dock transit validation errors dropped by 34% within the initial quarter of pipeline deployment."</p>
             </div>
-            <div class="cases-row" style="display: flex; flex-direction: column; gap: 1rem;">
-                <article class="case-card" style="padding: 1.5rem;"><div class="case-sector">Education</div><p>Automated result analysis surfaces at-risk students instantly, enabling timely educator intervention.</p></article>
-                <article class="case-card" style="padding: 1.5rem;"><div class="case-sector">Healthcare</div><p>Hospital resource AI balances staffing, beds, and equipment allocation in real time.</p></article>
-                <article class="case-card" style="padding: 1.5rem;"><div class="case-sector">Logistics</div><p>Predictive routing reduces fuel costs and improves on-time delivery rates.</p></article>
+            <div class="case-card">
+                <div class="case-sector">Healthcare Integration</div>
+                <p>"Legacy appointment software optimization layers resolved intake allocation friction, scaling treatment team utilization curves across multiple outpatient centers safely."</p>
             </div>
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" aria-labelledby="faq-heading">
-        <span class="section-tag fade-up">Frequently Asked Questions</span>
-        <h2 id="faq-heading" class="fade-up">Common questions about<br><em>Atriom-AI.</em></h2>
-        <div class="faq-list fade-up" role="list">
-            <div class="faq-item" role="listitem"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">What industries does Atriom-AI serve?<span class="faq-chevron" aria-hidden="true">▼</span></button><div class="faq-answer">Atriom-AI deploys enterprise AI systems across Education, Healthcare, Real Estate, Logistics, Industrial, and Enterprise sectors. Each vertical receives a tailored AI stack built around sector-specific workflows, compliance requirements, and data models.</div></div>
-            <div class="faq-item" role="listitem"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">How does Atriom-AI integrate with existing systems?<span class="faq-chevron" aria-hidden="true">▼</span></button><div class="faq-answer">Our data layers plug directly into your existing Enterprise Resource Planning (ERP) software, APIs, IoT sensors, and third-party platforms — enabling seamless AI augmentation without disrupting current operations.</div></div>
-            <div class="faq-item" role="listitem"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">How quickly can Atriom-AI deploy an AI system?<span class="faq-chevron" aria-hidden="true">▼</span></button><div class="faq-answer">We follow a four-step deployment process: Discovery &amp; Scoping, Data &amp; Model Design, Integration &amp; Testing, and Monitor &amp; Optimise. This structured approach is designed for fast, disruption-free rollouts tailored to your specific infrastructure.</div></div>
-            <div class="faq-item" role="listitem"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">Does Atriom-AI offer real-time analytics?<span class="faq-chevron" aria-hidden="true">▼</span></button><div class="faq-answer">Yes. Our analytics platform delivers sub-second real-time stream processing, multi-source data ingestion, ML model inference at scale, custom role-specific dashboards, and anomaly detection with smart automated alerts.</div></div>
-            <div class="faq-item" role="listitem"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">How can I get started with Atriom-AI?<span class="faq-chevron" aria-hidden="true">▼</span></button><div class="faq-answer">Simply reach out via our AI agent (the chat button on this page) or email us at info@atriom-ai.com. Tell us about your sector and challenges — we'll respond within one business day with a clear, jargon-free deployment plan.</div></div>
+    <hr class="divider" />
+
+    <section id="faq">
+        <span class="section-tag">Answering Questions</span>
+        <h2>Technical <em>Deep Dive</em></h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What specific data security architectures do you maintain?
+                    <span class="faq-chevron">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>All pipeline architectures isolate user tenant boundaries strictly. Data processes run within end-to-end encrypted storage arrays, adhering strictly to localized system validation protocols and enterprise safety requirements.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can system models execute commands within our internal applications?
+                    <span class="faq-chevron">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes. By deploying agentic systems utilizing schema-validated tool calling capabilities, agents interface securely with your existing backend APIs via strict authentication guardrails.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" aria-labelledby="contact-heading">
-        <div class="contact-inner fade-up">
-            <span class="section-tag">Get In Touch</span>
-            <h2 id="contact-heading">Ready to deploy AI in<br>your <em>organisation?</em></h2>
-            <p class="contact-lead">Tell us about your sector, your challenges, and your goals. We'll come back with a clear plan for how AI can create measurable impact — no jargon, no overselling.</p>
-            <a href="mailto:info@atriom-ai.com" class="mail-btn" aria-label="Email Atriom-AI at info@atriom-ai.com"><span aria-hidden="true">✉</span><span class="mail-addr">info@atriom-ai.com</span></a>
-            <p class="contact-note">We respond to all enquiries within one business day.</p>
+    <section id="contact">
+        <div class="contact-inner">
+            <span class="section-tag">Initiate Pipeline Upgrades</span>
+            <h2>Bring Autonomy To Your <em>Business Stack</em></h2>
+            <p class="contact-lead">Let our engineering group evaluate your data ecosystem topology and design an infrastructure framework prototype aligned perfectly with your requirements.</p>
+            <a href="mailto:info@atriom-ai.com" class="mail-btn">
+                <span class="mail-addr">info@atriom-ai.com</span>
+            </a>
+            <div class="contact-note">All integration scoping requests receive responses within one business day.</div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer aria-label="Site footer">
+    <footer>
         <div class="footer-brand">Atriom<em>-AI</em></div>
-        <nav class="footer-links" aria-label="Footer navigation">
+        <div class="footer-links">
             <a href="#croppulse">CropPulse</a>
+            <a href="#data-collector">Data Collector</a>
             <a href="#sectors">Sectors</a>
             <a href="#services">Services</a>
-            <a href="#analytics">Analytics</a>
-            <a href="#process">Process</a>
-            <a href="#faq">FAQ</a>
-            <a href="mailto:info@atriom-ai.com">Contact</a>
-        </nav>
-        <div class="footer-copy">© 2025 Atriom-AI. All rights reserved.</div>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Atriom-AI Systems. All architectural rights reserved.</div>
     </footer>
 
-    <!-- CHATBOT UI -->
-    <button class="chatbot-btn" onclick="toggleChat()" aria-label="Open Atriom AI agent chat">💬</button>
-    <div class="chatbot-window" id="chatWindow" role="dialog" aria-label="Atriom AI agent" aria-modal="true">
-        <div class="chatbot-header"><h4>Atriom Agent</h4><button class="chatbot-close" onclick="toggleChat()" aria-label="Close chat">✕</button></div>
-        <div class="chatbot-body" id="chatBody" aria-live="polite"></div>
-        <div class="chatbot-footer" id="chatFooter" style="display:none"></div>
+    <div class="chatbot-btn" onclick="toggleChat()" aria-label="Toggle chat assistance">💬</div>
+    <div class="chatbot-window" id="chatWindow">
+        <div class="chatbot-header">
+            <h4>Atriom Agent Node</h4>
+            <button class="chatbot-close" onclick="toggleChat()">&times;</button>
+        </div>
+        <div class="chatbot-body" id="chatBody">
+            <div class="chat-msg bot">System node initialized. Welcome to Atriom-AI. Select an exploratory parameter below to parse options.</div>
+        </div>
+        <div class="chatbot-footer">
+            <button class="chat-btn" onclick="triggerBotMsg('Tell me about CropPulse', 'CropPulse is our proprietary real-time streaming engine built for high-throughput multi-source analytics deployment.')">CropPulse</button>
+            <button class="chat-btn" onclick="triggerBotMsg('What industries do you serve?', 'We engineer tailored agent solutions for Healthcare, Education, Logistics, Industrial Production, and Real Estate.')">Industries</button>
+            <button class="chat-btn" onclick="triggerBotMsg('How can I request integration?', 'Send an infrastructure scope outline over to our engineers at info@atriom-ai.com to initiate setup steps.')">Integration</button>
+        </div>
     </div>
 
     <script>
-        function toggleFaq(btn) {
-            const item = btn.closest('.faq-item');
-            const isOpen = item.classList.contains('open');
-            document.querySelectorAll('.faq-item.open').forEach(el => { el.classList.remove('open'); el.querySelector('.faq-question').setAttribute('aria-expanded', 'false'); });
-            if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+        // CHART EXECUTION
+        const ctx = document.getElementById('loadChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                    datasets: [{
+                        label: 'Throughput Optimization Rate',
+                        data: [62, 65, 78, 88, 82, 94],
+                        borderColor: '#2d5a3d',
+                        backgroundColor: 'rgba(45, 90, 61, 0.05)',
+                        borderWidth: 1.5,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: '#e2ddd6' }, ticks: { font: { family: 'JetBrains Mono', size: 9 } } },
+                        x: { grid: { display: false }, ticks: { font: { family: 'JetBrains Mono', size: 9 } } }
+                    }
+                }
+            });
         }
 
-        const chatBody = document.getElementById('chatBody');
-        const chatFooter = document.getElementById('chatFooter');
-        let chatState = 0;
-        let leadData = { sector: '', query: '', name: '', phone: '' };
-        const sectors = ['Education', 'Healthcare', 'Real Estate', 'Logistics', 'Industry', 'Agriculture', 'Other'];
+        // FAQ COMPONENT ACTION
+        function toggleFaq(button) {
+            const item = button.parentElement;
+            item.classList.toggle('open');
+        }
 
+        // CHAT CONTROLLER 
         function toggleChat() {
             const win = document.getElementById('chatWindow');
-            if (win.style.display === 'flex') { win.style.display = 'none'; } else { win.style.display = 'flex'; if (chatState === 0) initChat(); }
+            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
         }
-        function appendMsg(text, sender) { chatBody.innerHTML += `<div class="chat-msg ${sender}">${text}</div>`; chatBody.scrollTop = chatBody.scrollHeight; }
-        function initChat() {
-            chatBody.innerHTML = ''; chatState = 1;
-            appendMsg("Hello! I'm the Atriom AI assistant. Which sector does your business operate in?", 'bot');
-            let html = '<div style="display:flex; flex-wrap:wrap; gap:0.5rem; width:100%">';
-            sectors.forEach(s => { html += `<button class="chat-btn" onclick="handleSector('${s}')">${s}</button>`; });
-            html += '</div>';
-            chatFooter.innerHTML = html; chatFooter.style.display = 'flex';
-        }
-        function handleSector(sector) {
-            leadData.sector = sector; appendMsg(`I'm from ${sector}.`, 'user'); chatFooter.style.display = 'none';
+
+        function triggerBotMsg(userText, botAnswer) {
+            const body = document.getElementById('chatBody');
+            
+            // Render User Prompt Node
+            const uDiv = document.createElement('div');
+            uDiv.className = 'chat-msg user';
+            uDiv.textContent = userText;
+            body.appendChild(uDiv);
+            
+            // Render Agent Response Node
             setTimeout(() => {
-                appendMsg("Great! Could you briefly describe the challenges you're looking to solve with AI?", 'bot');
-                chatFooter.innerHTML = `<div style="width:100%; display:flex; gap:0.5rem;"><input type="text" id="chatInput" placeholder="Briefly describe your needs..." style="flex:1; padding:0.6rem; border:1px solid var(--border); border-radius:6px; font-family:inherit;" aria-label="Describe your AI needs"><button onclick="handleQuery()" style="background:var(--accent); color:var(--surface); border:none; padding:0 1rem; border-radius:6px; cursor:pointer;" aria-label="Send">▶</button></div>`;
-                chatFooter.style.display = 'flex';
-                document.getElementById('chatInput').focus();
-                document.getElementById('chatInput').addEventListener('keypress', function(e) { if (e.key === 'Enter') handleQuery(); });
-            }, 600);
+                const bDiv = document.createElement('div');
+                bDiv.className = 'chat-msg bot';
+                bDiv.textContent = botAnswer;
+                body.appendChild(bDiv);
+                body.scrollTop = body.scrollHeight;
+            }, 350);
         }
-        function handleQuery() {
-            const input = document.getElementById('chatInput').value.trim();
-            if (!input) return;
-            leadData.query = input; appendMsg(input, 'user'); chatFooter.style.display = 'none';
-            setTimeout(() => {
-                appendMsg("Understood. Finally, what's your name and contact number so our specialists can reach out?", 'bot');
-                chatFooter.innerHTML = `<div style="display:flex; flex-direction:column; gap:0.5rem; width:100%"><input type="text" id="cName" placeholder="Your Name" style="padding:0.6rem; border:1px solid var(--border); border-radius:6px; font-family:inherit;" aria-label="Your name"><input type="tel" id="cPhone" placeholder="Contact Number" style="padding:0.6rem; border:1px solid var(--border); border-radius:6px; font-family:inherit;" aria-label="Your contact number"><button onclick="submitLead()" style="background:var(--accent); color:var(--surface); border:none; padding:0.8rem; border-radius:6px; cursor:pointer; font-weight:500;">Connect with Atriom-AI</button></div>`;
-                chatFooter.style.display = 'flex';
-                document.getElementById('cName').focus();
-            }, 600);
-        }
-        function submitLead() {
-            const name = document.getElementById('cName').value.trim();
-            const phone = document.getElementById('cPhone').value.trim();
-            if (!name || !phone) { alert("Please provide both name and phone number."); return; }
-            leadData.name = name; leadData.phone = phone;
-            appendMsg(`${name}, ${phone}`, 'user'); chatFooter.style.display = 'none';
-            setTimeout(() => {
-                appendMsg(`Thank you, ${name}. Routing your request concerning ${leadData.sector} to our team...`, 'bot');
-                const subject = encodeURIComponent(`Atriom-AI Enquiry: ${leadData.sector} Sector`);
-                const mailBody = encodeURIComponent(`Name: ${leadData.name}\nPhone: ${leadData.phone}\nSector: ${leadData.sector}\nMessage: ${leadData.query}\n\nSent via Conversational Atriom Agent.`);
-                window.location.href = `mailto:info@atriom-ai.com?subject=${subject}&body=${mailBody}`;
-                setTimeout(() => { toggleChat(); chatState = 0; }, 2500);
-            }, 800);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof Chart !== 'undefined') {
-                // Live throughput chart
-                const ctx = document.getElementById('liveChart').getContext('2d');
-                const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-                gradient.addColorStop(0, 'rgba(45, 90, 61, 0.4)');
-                gradient.addColorStop(1, 'rgba(45, 90, 61, 0)');
-                const liveChart = new Chart(ctx, {
-                    type: 'line',
-                    data: { labels: Array.from({length: 12}, (_, i) => `T-${12-i}s`), datasets: [{ label: 'Requests/sec', data: Array.from({length: 12}, () => Math.floor(Math.random() * 40) + 60), borderColor: '#2d5a3d', backgroundColor: gradient, borderWidth: 2, fill: true, tension: 0.3, pointRadius: 0 }] },
-                    options: { responsive: true, maintainAspectRatio: false, animation: { duration: 0 }, plugins: { legend: { display: false } }, scales: { y: { display: true, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: '#8a8880' }, min: 0, max: 120 }, x: { display: true, grid: { display: false }, ticks: { color: '#8a8880' } } } }
-                });
-                setInterval(() => { liveChart.data.datasets[0].data.shift(); liveChart.data.datasets[0].data.push(Math.floor(Math.random() * 40) + 60); liveChart.update(); }, 1000);
-
-                const sCtx = document.getElementById('sectorsChart');
-                if (sCtx) {
-                    new Chart(sCtx.getContext('2d'), {
-                        type: 'doughnut',
-                        data: { labels: ['Education', 'Healthcare', 'Real Estate', 'Logistics', 'Industry', 'Enterprise'], datasets: [{ data: [15, 25, 20, 15, 15, 10], backgroundColor: ['#2d5a3d','#3d7a52','#4c9966','#5ca375','#6cae85','#8a8880'], borderWidth: 0 }] },
-                        options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'right', labels: { color: '#8a8880', font: {family: 'Outfit'} } } } }
-                    });
-                }
-
-                const netCanvas = document.getElementById('networkChart');
-                if (netCanvas) {
-                    const nCtx = netCanvas.getContext('2d');
-                    const rect = netCanvas.parentElement.getBoundingClientRect();
-                    netCanvas.width = rect.width; netCanvas.height = rect.height;
-                    const particles = [];
-                    for (let i = 0; i < 45; i++) particles.push({ x: Math.random() * netCanvas.width, y: Math.random() * netCanvas.height, vx: (Math.random() - 0.5) * 1.2, vy: (Math.random() - 0.5) * 1.2, r: Math.random() * 2 + 1.5 });
-                    function drawNetwork() {
-                        nCtx.clearRect(0, 0, netCanvas.width, netCanvas.height);
-                        nCtx.fillStyle = '#2d5a3d'; nCtx.strokeStyle = 'rgba(45, 90, 61, 0.2)';
-                        particles.forEach(p => { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > netCanvas.width) p.vx *= -1; if (p.y < 0 || p.y > netCanvas.height) p.vy *= -1; nCtx.beginPath(); nCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2); nCtx.fill(); });
-                        for (let i = 0; i < particles.length; i++) for (let j = i + 1; j < particles.length; j++) { const dx = particles[i].x - particles[j].x; const dy = particles[i].y - particles[j].y; const dist = Math.sqrt(dx*dx + dy*dy); if (dist < 90) { nCtx.beginPath(); nCtx.moveTo(particles[i].x, particles[i].y); nCtx.lineTo(particles[j].x, particles[j].y); nCtx.stroke(); } }
-                        requestAnimationFrame(drawNetwork);
-                    }
-                    drawNetwork();
-                    window.addEventListener('resize', () => { const r = netCanvas.parentElement.getBoundingClientRect(); netCanvas.width = r.width; netCanvas.height = r.height; });
-                }
-
-                const heatmap = document.querySelector('.heatmap-container');
-                if (heatmap) {
-                    for (let i = 0; i < 64; i++) { const cell = document.createElement('div'); const intensity = Math.random(); let color = 'rgba(45, 90, 61, 0.1)'; if (intensity > 0.85) color = 'rgba(200, 50, 50, 0.8)'; else if (intensity > 0.6) color = 'rgba(45, 90, 61, 0.4)'; else if (intensity > 0.3) color = 'rgba(45, 90, 61, 0.2)'; cell.style.cssText = `width:100%; aspect-ratio:1; border-radius:4px; background:${color}; transition:background 1s ease-in-out;`; heatmap.appendChild(cell); }
-                    setInterval(() => { const cells = heatmap.children; const idx = Math.floor(Math.random() * 64); const isAnomaly = Math.random() > 0.8; const intensity = Math.random(); let color = 'rgba(45, 90, 61, 0.1)'; if (isAnomaly) color = 'rgba(200, 50, 50, 0.8)'; else if (intensity > 0.6) color = 'rgba(45, 90, 61, 0.4)'; else if (intensity > 0.3) color = 'rgba(45, 90, 61, 0.2)'; cells[idx].style.background = color; }, 400);
-                }
-            }
-
-            // CropPulse waveform
-            const cropCanvas = document.getElementById('cropWave');
-            if (cropCanvas) {
-                const wCtx = cropCanvas.getContext('2d');
-                cropCanvas.width = cropCanvas.offsetWidth * window.devicePixelRatio;
-                cropCanvas.height = 80 * window.devicePixelRatio;
-                wCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
-                const W = cropCanvas.offsetWidth, H = 80, points = 200;
-                let waveData = Array.from({length: points}, () => (Math.random() - 0.5) * 4);
-                let cavitationEvents = [], stressLevel = 0;
-                function addCavitationEvent(x) { cavitationEvents.push({ x, life: 1.0, type: Math.random() > 0.7 ? 'stress' : 'normal' }); }
-                function drawWave() {
-                    wCtx.clearRect(0, 0, W, H);
-                    waveData.shift(); waveData.push((Math.random() - 0.5) * 6);
-                    if (Math.random() < 0.04) { const spikeAmp = 15 + Math.random() * 20; waveData[waveData.length - 1] = (Math.random() > 0.5 ? 1 : -1) * spikeAmp; addCavitationEvent(W - 2); if (Math.random() > 0.5) stressLevel = Math.min(1, stressLevel + 0.15); }
-                    stressLevel = Math.max(0, stressLevel - 0.003);
-                    const threshold = H / 2 - 18;
-                    wCtx.setLineDash([4, 4]); wCtx.strokeStyle = 'rgba(200,80,80,0.3)'; wCtx.lineWidth = 1;
-                    wCtx.beginPath(); wCtx.moveTo(0, threshold); wCtx.lineTo(W, threshold); wCtx.stroke();
-                    wCtx.beginPath(); wCtx.moveTo(0, H - threshold); wCtx.lineTo(W, H - threshold); wCtx.stroke();
-                    wCtx.setLineDash([]);
-                    wCtx.beginPath(); wCtx.lineWidth = 1.5;
-                    const mid = H / 2;
-                    for (let i = 0; i < points; i++) { const x = (i / (points - 1)) * W, y = mid + waveData[i]; i === 0 ? wCtx.moveTo(x, y) : wCtx.lineTo(x, y); }
-                    const r = Math.round(45 + stressLevel * 155), g = Math.round(90 - stressLevel * 40), b = Math.round(61 - stressLevel * 20);
-                    wCtx.strokeStyle = `rgb(${r},${g},${b})`; wCtx.stroke();
-                    cavitationEvents = cavitationEvents.filter(e => e.life > 0);
-                    cavitationEvents.forEach(e => { e.x -= 1.5; e.life -= 0.018; wCtx.beginPath(); wCtx.arc(e.x, mid, 4 * (1 - e.life * 0.5), 0, Math.PI * 2); wCtx.fillStyle = e.type === 'stress' ? `rgba(200,80,80,${e.life})` : `rgba(45,90,61,${e.life})`; wCtx.fill(); });
-                    requestAnimationFrame(drawWave);
-                }
-                drawWave();
-                window.addEventListener('resize', () => { cropCanvas.width = cropCanvas.offsetWidth * window.devicePixelRatio; cropCanvas.height = 80 * window.devicePixelRatio; wCtx.scale(window.devicePixelRatio, window.devicePixelRatio); });
-            }
-        });
-
-        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
