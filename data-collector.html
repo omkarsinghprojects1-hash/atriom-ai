@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Collector Console — Atriom-AI</title>
+    <meta name="description" content="Atriom-AI Data Collector Console — secure metrics ingestion, pipeline log submission, and stream configuration interface." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,400&family=Outfit:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #f7f6f2;
+            --bg2: #f0ede6;
+            --surface: #ffffff;
+            --border: #e2ddd6;
+            --border2: #cdc8c0;
+            --accent: #2d5a3d;
+            --accent-lt: #e8f0ea;
+            --accent2: #7a9e87;
+            --ink: #1a1a18;
+            --ink2: #3d3d3a;
+            --muted: #8a8880;
+        }
+
+        html, body {
+            height: 100%;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+        }
+
+        /* ── TOP BAR ── */
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            background: rgba(247, 246, 242, 0.96);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            gap: 1.5rem;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 400;
+            transition: color 0.2s;
+            padding: 0.35rem 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .back-btn:hover { color: var(--ink); }
+        .back-arrow { font-size: 0.9rem; }
+
+        .topbar-sep {
+            width: 1px;
+            height: 22px;
+            background: var(--border2);
+            flex-shrink: 0;
+        }
+
+        .wordmark {
+            font-family: 'Fraunces', serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .wordmark em { font-style: italic; color: var(--accent); }
+
+        .topbar-center {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .page-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-lt);
+            padding: 0.22rem 0.7rem;
+            border-radius: 2px;
+        }
+        .status-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .meta-item {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .meta-item-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent2);
+        }
+
+        @media (max-width: 640px) {
+            .topbar-center, .topbar-right { display: none; }
+        }
+
+        /* ── IFRAME FULL-BLEED ── */
+        .frame-wrap {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .frame-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar" aria-label="Data Collector navigation">
+        <div class="topbar-left">
+            <a href="index.html" class="back-btn" aria-label="Back to Atriom-AI">
+                <span class="back-arrow">←</span> Back
+            </a>
+            <div class="topbar-sep" aria-hidden="true"></div>
+            <a href="index.html" class="wordmark" aria-label="Atriom-AI home">Atriom<em>-AI</em></a>
+        </div>
+
+        <div class="topbar-center" aria-label="Page context">
+            <span class="page-label">Data Collector Console</span>
+            <div class="status-pill" aria-label="Interface active">
+                <span class="status-dot" aria-hidden="true"></span>
+                Active
+            </div>
+        </div>
+
+        <div class="topbar-right" aria-label="Session metadata">
+            <div class="meta-item"><span class="meta-item-dot" aria-hidden="true"></span>Secure Interface</div>
+            <div class="meta-item"><span class="meta-item-dot" aria-hidden="true"></span>Live Pipeline</div>
+        </div>
+    </header>
+
+    <main class="frame-wrap">
+        <iframe
+            src="https://omkarsinghprojects1-hash.github.io/atriom_ai_data_collector/"
+            title="Atriom-AI Data Collector Application Node"
+            allow="clipboard-write"
+            loading="eager">
+        </iframe>
+    </main>
+
+</body>
+</html>
